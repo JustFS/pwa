@@ -1,0 +1,11 @@
+1 - structure basique
+2 - manifest.json 
+      short_name == nom sur l'icone
+      standalone == fait disparaitre l'url
+      ne pas oublier de l'importer dans tous les fichiers HTML
+3 - emulateur 
+      adresse : 10.0.2.2:5500
+      test app en cliquant dans le menu (install sur le bureau)
+4 - service worker
+      caniuse pour check
+      connect sw.js
