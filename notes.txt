@@ -9,3 +9,31 @@
 4 - service worker
       caniuse pour check
       connect sw.js
+5 - check lighthouse pour controler si PWA
+      set theme color
+// show automatically banner ""Add to home screen""
+https://developers.google.com/web/fundamentals/app-install-banners/native
+6 - fetch events
+7 - pas HTTPS sur mobile (seulement sur localhost)
+      chrome://inspect/#devices
+      port forwarding : 5500
+8 - Pré cache assets (sans que ça marche offline)
+      inside event 'install'
+9 - Offline site
+      check event
+      check network (file are cached)
+      inside preview : icon?family=Material+Icons => another link to cache
+
+
+
+
+
+
+
+
+
+
+
+
+            maksable Icons
+            "purpose": "any maskable"
