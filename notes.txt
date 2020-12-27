@@ -16,24 +16,17 @@ https://developers.google.com/web/fundamentals/app-install-banners/native
 6 - fetch events
 7 - pas HTTPS sur mobile (seulement sur localhost)
       chrome://inspect/#devices
-      port forwarding : 5500
+      localhost:5500
+      il faut un google play account
 8 - Pré cache assets (sans que ça marche offline)
       inside event 'install'
 9 - Offline site
       check event
       check network (file are cached)
       inside preview : icon?family=Material+Icons => another link to cache
+10 - supprimer anciens caches
 
+maksable Icons
+"purpose": "any maskable"
 
-
-
-
-
-
-
-
-
-
-
-            maksable Icons
-            "purpose": "any maskable"
+ed82f4c18f2964e75117c2dc65e2161d

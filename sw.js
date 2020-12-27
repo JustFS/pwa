@@ -1,3 +1,4 @@
+// on update le nom du cache
 const staticCacheName = "site-static";
 const assets = [
   "/",
@@ -12,7 +13,7 @@ const assets = [
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
 ];
 
-// install event
+// mise en cache
 self.addEventListener("install", (evt) => {
   //console.log('service worker installed');
   evt.waitUntil(
@@ -24,14 +25,23 @@ self.addEventListener("install", (evt) => {
   );
 });
 
-// activate event
+// supprimer les anciens caches
 self.addEventListener("activate", (evt) => {
   //console.log('service worker activated');
+  evt.waitUntil(
+    caches.keys().then((keys) => {
+      // console.log(keys);
+      return Promise.all(
+        keys
+          .filter((key) => key !== staticCacheName)
+          .map((key) => caches.delete(key))
+      );
+    })
+  );
 });
 
-// fetch event
+// fetch la data when offline
 self.addEventListener("fetch", (evt) => {
-  // test event when offline
   // console.log("fetch event", evt);
   evt.respondWith(
     caches.match(evt.request).then((cacheRes) => {
