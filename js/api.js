@@ -3,7 +3,7 @@ const searchInput = document.getElementById("searchInput");
 const result = document.getElementById("result");
 
 let search = "";
-let movies;
+let movies = [];
 
 const fetchMovies = async () => {
   movies = await fetch(
@@ -15,13 +15,23 @@ const fetchMovies = async () => {
 const moviesDisplay = async () => {
   await fetchMovies();
 
+  movies.results.length = 12;
+
   result.innerHTML = movies.results
     .map(
       (movie) =>
         `
-        <h2>${movie.original_title}</h2>
-        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}"></img>
-      `
+          <li>
+            <h2>${movie.original_title}</h2>
+            <div class="card-content">
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}"></img>
+              <div class="infos">
+                <p>${movie.overview}</p>
+                <p>Popularité : ${movie.popularity} ⭐</p>
+              </div>
+            </div>
+          </li>
+        `
     )
     .join("");
 };
