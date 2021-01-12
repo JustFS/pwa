@@ -3,9 +3,11 @@
   "short_name": "WW",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "black",
+  "background_color": "white",
   "theme_color": "black",
   "orientation": "portrait-primary",
+  "lang": "fr",
+  "description": "L'application numéro 1 pour choisir vos films",
   "icons": [
     {
       "src": "/assets/icons/icon-72x72.png",
@@ -42,11 +44,6 @@
       "src": "/assets/icons/icon-384x384.png",
       "type": "image/png",
       "sizes": "384x384"
-    },
-    {
-      "src": "/assets/icons/icon-512x512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ]
 }

@@ -3,7 +3,7 @@
       short_name == nom sur l'icone
       standalone == fait disparaitre l'url
       ne pas oublier de l'importer dans tous les fichiers HTML
-3 - emulateur 
+3 - emulateur : android pie
       adresse : 10.0.2.2:5500
       test app en cliquant dans le menu (install sur le bureau)
 4 - service worker
@@ -16,7 +16,7 @@ https://developers.google.com/web/fundamentals/app-install-banners/native
 6 - fetch events
 7 - pas HTTPS sur mobile (seulement sur localhost)
       chrome://inspect/#devices
-      localhost:5500
+      http://localhost:5500
       il faut un google play account
 8 - Pré cache assets (sans que ça marche offline)
       inside event 'install'
