@@ -51,10 +51,15 @@ img {
   width: 40%;
   max-width: 250px;
 }
+.result-container {
+  margin: 0 auto;
+}
 ul {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
+  margin: auto;
+  max-width: 1400px;
 }
 li {
   max-width: 400px;
