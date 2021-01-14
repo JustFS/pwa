@@ -7,9 +7,19 @@
 
 4 - HTTPS sur mobile
       Dans chrome aller sur : chrome://inspect/#devices
-      ur mobile aller sur : http://localhost:5500
+      Sur mobile aller sur : http://localhost:5500
       il faut un google play account
       
 5 - service worker
 // Afficher automatiquement la bannière "Add to home screen"
 https://developers.google.com/web/fundamentals/app-install-banners/native
+
+
+A rajouter (éventuellement) dans le manifest :
+"prefer_related_applications": true,
+"related_applications": [
+  {
+    "platform": "play",
+    "id": "com.google.samples.apps.iosched"
+  }
+]

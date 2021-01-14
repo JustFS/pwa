@@ -3,8 +3,8 @@
   "short_name": "WW",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "black",
-  "theme_color": "black",
+  "background_color": "white",
+  "theme_color": "white",
   "orientation": "portrait-primary",
   "icons": [
     {
