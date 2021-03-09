@@ -1,4 +1,8 @@
+Télécharger Lighthouse
+Télécharger Android Studio
+
 1 - manifest.json 
+      https://developer.mozilla.org/fr/docs/Web/Manifest 
       standalone == fait disparaitre l'url
 
 2 - emulateur : android pie (adresse du projet : 10.0.2.2:5500)
