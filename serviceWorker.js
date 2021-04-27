@@ -1,7 +1,7 @@
 const staticCacheName = "cache-v1";
 const assets = ["/", "/index.html"];
 
-// ajout fichiers en cache
+// ajout de fichiers en cache
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(staticCacheName).then((cache) => {
@@ -10,46 +10,51 @@ self.addEventListener("install", (e) => {
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      // Cache hit - return response
-      if (response) {
-        return response;
+// fetch event
+self.addEventListener("fetch", (evt) => {
+  // check if request is made by chrome extensions or web page
+  // if request is made for web page url must contains http.
+  if (!(evt.request.url.indexOf("http") === 0)) return; // skip the request. if request is not made with http protocol
+
+  evt.respondWith(
+    caches
+      .match(evt.request)
+      .then(
+        (cacheRes) =>
+          cacheRes ||
+          fetch(evt.request).then((fetchRes) =>
+            caches.open(staticCacheName).then((cache) => {
+              cache.add(evt.request.url, fetchRes.clone());
+              // check cached items size
+              limitCacheSize(staticCacheName, 75);
+              return fetchRes;
+            })
+          )
+      )
+      .catch(() => caches.match("/fallback"))
+  );
+});
+
+// cache size limit function
+const limitCacheSize = (name, size) => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size));
       }
+    });
+  });
+};
 
-      // IMPORTANT: Cloner la requête.
-      // Une requete est un flux et est à consommation unique
-      // Il est donc nécessaire de copier la requete pour pouvoir l'utiliser et la servir
-      var fetchRequest = event.request.clone();
-
-      return fetch(fetchRequest).then(function (response) {
-        if (!response || response.status !== 200 || response.type !== "basic") {
-          return response;
-        }
-
-        // IMPORTANT: Même constat qu'au dessus, mais pour la mettre en cache
-        var responseToCache = response.clone();
-
-        caches.open(staticCacheName).then(function (cache) {
-          cache.put(event.request, responseToCache);
-        });
-
-        return response;
-      });
-    })
-  );
-});
-
-// supprimer caches
-self.addEventListener("activate", (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.add(
-        keys
-          .filter((key) => key !== staticCacheName)
-          .map((key) => caches.delete(key))
-      );
-    })
-  );
-});
+// supprimer caches (promise.add déprécié)
+// self.addEventListener("activate", (e) => {
+//   e.waitUntil(
+//     caches.keys().then((keys) => {
+//       return Promise.add(
+//         keys
+//           .filter((key) => key !== staticCacheName)
+//           .map((key) => caches.delete(key))
+//       );
+//     })
+//   );
+// });
